@@ -1,0 +1,31 @@
+.gitignore
+.eslintignore
+.eslintrc.yml
+.editorconfig
+.nycrc
+
+logs
+!logs/.keep
+
+Jenkinsfile
+
+# dotenv environment variables file
+.env
+.env-*
+
+# config.json
+config.json
+config-*.json
+
+# MacOS
+.DS_Store
+
+# Dependency directories
+node_modules/
+
+# SonarQube scanner
+.scannerwork
+sonar-project.properties
+
+# default public folder
+public

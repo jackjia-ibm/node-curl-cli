@@ -1,0 +1,37 @@
+{
+  "name": "node-curl-cli",
+  "version": "0.0.1",
+  "description": "CURL cli alternative but implemented in node.js",
+  "main": "src/index.js",
+  "bin": {
+    "ncc": "src/cli.js"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "test": "npm link && mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jackjia-ibm/node-curl-cli.git"
+  },
+  "author": "Jack T. Jia <jack-tiefeng.jia@ibm.com>",
+  "license": "EPL-2.0",
+  "bugs": {
+    "url": "https://github.com/jackjia-ibm/node-curl-cli/issues"
+  },
+  "homepage": "https://github.com/jackjia-ibm/node-curl-cli#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "debug": "^4.1.1",
+    "eslint": "^5.11.1",
+    "mocha": "^5.2.0",
+    "nyc": "^14.1.1"
+  },
+  "dependencies": {
+    "@octokit/rest": "^16.3.2",
+    "chalk": "^2.4.1",
+    "dotenv": "^6.2.0",
+    "winston": "^3.1.0",
+    "yargs": "^12.0.5"
+  }
+}
