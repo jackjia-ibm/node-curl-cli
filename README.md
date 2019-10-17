@@ -1,6 +1,6 @@
 # node-curl-cli
 
-![Actions Status](https://wdp9fww0r9.execute-api.us-west-2.amazonaws.com/production/badge/jackjia-ibm/node-curl-cli?style=flat-square)
+![Actions Status](https://github.com/jackjia-ibm/node-curl-cli/workflows/Build%20and%20Test/badge.svg)
 
 GitHub tools to synchronize milestones or labels across all organization/user repositories.
 
