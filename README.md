@@ -28,30 +28,27 @@ To find command help, type `ncc -h`:
 
 ```
 $ ncc -h
-Usage: ncc [options] <command> [command-options]
+ncc
 
-Commands:
-  ncc labels <command>        List/add/delete labels of organization or user.
-                                                                   [aliases: lb]
-  ncc milestones <command>    List/add/delete milestones of a repository.
-                                                                   [aliases: ms]
-  ncc repositories <command>  List repositories of organization or user.
-                                                      [aliases: repos, repo, rp]
-
-GitHub:
-  --organization   Github organization name.
-  --template-repo  Github template repository name.
-  --username, -u   Github account username. Required if API token is empty.
-  --password, -p   Github account password. Required if API token is empty.
-  --token          Github API token. Required if username is empty.
+fetch url
 
 Options:
-  --version      Show version number                                   [boolean]
-  --config       Path to JSON config file
-  --format       Response format. Available values are: plain, json.
-                                                              [default: "plain"]
-  --verbose, -v  Show more processing details.        [boolean] [default: false]
-  -h, --help     Show help                                             [boolean]
+  --version, -V     Show version number                                [boolean]
+  --user, -u        Server user and password.
+  --headers, -H     Pass custom header LINE to server (H)                [array]
+  --request, -X     Specify request command to use              [default: "GET"]
+  --data, -d        HTTP POST data (H)
+  --data-raw        HTTP POST data, '@' allowed (H)
+  --fail, -f        Fail silently (no output at all) on HTTP errors (H)[boolean]
+  --include, -i     Include protocol headers in the output (H/F)       [boolean]
+  --insecure, -k    Allow connections to SSL sites without certs (H)   [boolean]
+  --silent, -s      Silent mode (don't output anything)                [boolean]
+  --show-error, -S  Show error. With -s, make curl show errors when they occur
+                                                                       [boolean]
+  --user-agent, -A  Specify  the  User-Agent string to send to the HTTP server.
+  --output, -o      Write  output  to  <file>  instead  of  stdout.
+  --verbose, -v     Show more processing details.     [boolean] [default: false]
+  -h, --help        Show help                                          [boolean]
 ```
 
 For each command, you can type `ncc <command> -h` to get more detail help.

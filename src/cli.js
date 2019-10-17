@@ -10,20 +10,12 @@
 
 const chalk = require('chalk');
 
-// load tool version
-const pkg = require('../package.json');
-const version = pkg && pkg.version;
-const name = pkg && pkg.name;
-// const { RESPONSE_FORMATS, RESPONSE_DEFAULT_FORMAT, RESPONSE_FORMAT_PLAIN } = require('./libs/constants');
-require('dotenv').config();
+const { Curl } = require('./libs/curl');
 
 let logger;
 const startLogging = argv => {
   // init logger
   logger = require('./libs/logger')(argv.verbose ? 'debug' : 'info');
-  logger.info('=============================================================================================');
-  logger.info(`${name} v${version}`);
-  logger.info('');
   logger.debug('argv: %j', argv);
 
   argv.logger = logger;
@@ -32,10 +24,74 @@ const startLogging = argv => {
 // parse arguments
 const yargs = require('yargs');
 yargs
-  .version(version)
+  .version()
+  .alias('version', 'V')
   .scriptName('ncc')
-  .usage('Usage: $0 [options] <command> [command-options]')
+  .usage('Usage: $0 [options] <url>')
+  .command('*', 'fetch url', () => {}, async (argv) => {
+    const url = argv._ && argv._[0];
+    if (!url) {
+      throw new Error('<url> is missing');
+    }
+
+    const curl = new Curl(argv);
+    await curl.req(url, argv);
+  })
   .options({
+    user: {
+      alias: 'u',
+      description: 'Server user and password.',
+    },
+    headers: {
+      alias: 'H',
+      description: 'Pass custom header LINE to server (H)',
+      type: 'array',
+    },
+    request: {
+      alias: 'X',
+      description: 'Specify request command to use',
+      default: 'GET',
+    },
+    data: {
+      alias: 'd',
+      description: 'HTTP POST data (H)',
+    },
+    'data-raw': {
+      description: 'HTTP POST data, \'@\' allowed (H)',
+    },
+    fail: {
+      alias: 'f',
+      description: 'Fail silently (no output at all) on HTTP errors (H)',
+      type: 'boolean',
+    },
+    include: {
+      alias: 'i',
+      description: 'Include protocol headers in the output (H/F)',
+      type: 'boolean',
+    },
+    insecure: {
+      alias: 'k',
+      description: 'Allow connections to SSL sites without certs (H)',
+      type: 'boolean',
+    },
+    silent: {
+      alias: 's',
+      description: 'Silent mode (don\'t output anything)',
+      type: 'boolean',
+    },
+    'show-error': {
+      alias: 'S',
+      description: 'Show error. With -s, make curl show errors when they occur',
+      type: 'boolean',
+    },
+    'user-agent': {
+      alias: 'A',
+      description: 'Specify  the  User-Agent string to send to the HTTP server.',
+    },
+    output: {
+      alias: 'o',
+      description: 'Write  output  to  <file>  instead  of  stdout.',
+    },
     verbose: {
       alias: 'v',
       default: false,
