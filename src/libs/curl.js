@@ -60,7 +60,7 @@ class Curl {
       port,
       path: path + (hash ? '#' + hash : ''),
       headers,
-      rejectUnauthorized: !!options.insecure,
+      rejectUnauthorized: !options.insecure,
     };
 
     if (options.user) {
