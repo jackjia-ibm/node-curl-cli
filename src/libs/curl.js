@@ -60,6 +60,7 @@ class Curl {
       port,
       path: path + (hash ? '#' + hash : ''),
       headers,
+      rejectUnauthorized: !!options.insecure,
     };
 
     if (options.user) {
@@ -119,10 +120,6 @@ class Curl {
         }
 
         process.stdout.write(res.body);
-        // console.log(`BODY: ${res.body}`);
-      })
-      .catch(e => {
-        process.stderr.write(e);
       });
 
     return p;

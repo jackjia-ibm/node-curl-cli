@@ -3,6 +3,7 @@
 .eslintrc.yml
 .editorconfig
 .nycrc
+.github
 
 logs
 !logs/.keep
