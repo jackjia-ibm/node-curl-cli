@@ -119,7 +119,16 @@ class Curl {
           }
         }
 
-        process.stdout.write(res.body);
+        // try to pretty-format json
+        let body = res.body;
+        try {
+          body = JSON.stringify(JSON.parse(res.body), null, 2);
+        } catch (e) {
+          // ignore failure
+          this.logger.debug(`parse response body failed: ${e}`);
+        }
+
+        process.stdout.write(body);
       });
 
     return p;
